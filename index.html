@@ -93,7 +93,7 @@
 							</li>
 						</ul>
 					</li>
-					<li>
+					<!--<li>
 						<a href="javascript:;">
 							<i class="iconfont">&#xe6b8;</i>
 							<cite>模型管理</cite>
@@ -154,39 +154,6 @@
 							</li>
 						</ul>
 					</li>
-
-					<!--<li>
-						<a href="javascript:;">
-							<i class="iconfont">&#xe6b8;</i>
-							<cite>诊断管理</cite>
-							<i class="iconfont nav_right">&#xe697;</i>
-						</a>
-						<ul class="sub-menu">
-							<li>
-								<a _href="./pages/member/list.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>样本诊断</cite>
-
-								</a>
-							</li>
-							<li>
-								<a _href="./pages/member/del.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>历史诊断记录</cite>
-
-								</a>
-							</li>
-							<li>
-								<a _href="./pages/member/del.html">
-									<i class="iconfont">&#xe6a7;</i>
-									<cite>病历管理</cite>
-
-								</a>
-							</li>
-						</ul>
-					</li>-->
-
-
 
 					<li>
 						<a href="javascript:;">
@@ -250,7 +217,7 @@
 								</a>
 							</li>
 						</ul>
-					</li>
+					</li>-->
 				</ul>
 			</div>
 		</div>
@@ -278,36 +245,40 @@
 		</div>
 		<!-- 底部结束 -->
 		<script type="text/javascript">
-//			layui扩展模块的两种加载方式-示例
-//		    layui.extend({
-//			  admin: '{/}../../static/js/admin' // {/}的意思即代表采用自有路径，即不跟随 base 路径
-//			});
-//			//使用拓展模块
-//			layui.use('admin', function(){
-//			  var admin = layui.admin;
-//			});
 			layui.config({
 			  base: './static/js/'
 			  ,version: '101100'
 			}).use('admin');
-			/*layui.use(['jquery','admin'], function(){
-				var $ = layui.jquery;
-				$(function(){
-					var login = JSON.parse(localStorage.getItem("login"));
-					if(login){
-						if(login=0){
-							window.location.href='./login.html';
-							return false;
-						}else{
-							return false;
-						}
-					}else{
-						window.location.href='./login.html';
-						return false;
-					}
-				});
-			});*/
-
+		</script>
+		<script type="text/html">
+			{{each data as item}}
+				<li>
+					<a href="javascript:;">
+						<i class="iconfont">&#xe726;</i>
+						<cite>管理员管理</cite>
+						<i class="iconfont nav_right">&#xe697;</i>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a _href="./pages/admin/list.html">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>管理员列表</cite>
+							</a>
+						</li>
+						<li>
+							<a _href="./pages/user/role.html">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>角色管理</cite>
+							</a>
+						</li>
+						<li>
+							<a _href="./pages/admin/rule.html">
+								<i class="iconfont">&#xe6a7;</i>
+								<cite>权限管理</cite>
+							</a>
+						</li>
+					</ul>
+				</li>
 		</script>
 	</body>
 	<!--Tab菜单右键弹出菜单-->
@@ -317,5 +288,7 @@
         <li data-type="other">关闭其它</li>
         <li data-type="all">关闭所有</li>
     </ul>
+
+
 
 </html>

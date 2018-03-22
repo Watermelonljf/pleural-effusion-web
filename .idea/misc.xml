@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="D:/dev/software/Maven/apache-maven-3.2.5-bin/apache-maven-3.2.5" />
-        <option name="pluginUpdatePolicy" value="DO_NOT_UPDATE" />
-        <option name="userSettingsFile" value="D:\dev\software\Maven\apache-maven-3.2.5-bin\apache-maven-3.2.5\conf\settings.xml" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/classes" />
-  </component>
-  <component name="SvnConfiguration" myUseAcceleration="nothing">
-    <configuration>C:\Users\ljianf\AppData\Roaming\Subversion</configuration>
-    <option name="UPDATE_LOCK_ON_DEMAND" value="true" />
   </component>
   <component name="masterDetails">
     <states>
