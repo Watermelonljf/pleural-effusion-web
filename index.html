@@ -250,36 +250,21 @@
 			  ,version: '101100'
 			}).use('admin');
 		</script>
-		<script type="text/html">
-			{{each data as item}}
+		<script type="text/javascript" src="./lib/template/template.js"></script>
+		<script type="text/javascript" src="./index.js"></script>
+		<script  type="text/html" id="menu-list">
+			{{each data as item }}
 				<li>
 					<a href="javascript:;">
-						<i class="iconfont">&#xe726;</i>
-						<cite>管理员管理</cite>
+						<i class="iconfont">{{item.icon }}</i>
+						<cite>{{item.name }}</cite>
 						<i class="iconfont nav_right">&#xe697;</i>
 					</a>
-					<ul class="sub-menu">
-						<li>
-							<a _href="./pages/admin/list.html">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>管理员列表</cite>
-							</a>
-						</li>
-						<li>
-							<a _href="./pages/user/role.html">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>角色管理</cite>
-							</a>
-						</li>
-						<li>
-							<a _href="./pages/admin/rule.html">
-								<i class="iconfont">&#xe6a7;</i>
-								<cite>权限管理</cite>
-							</a>
-						</li>
-					</ul>
+
 				</li>
+			{{/each}}
 		</script>
+
 	</body>
 	<!--Tab菜单右键弹出菜单-->
 	<ul class="rightMenu" id="rightMenu">
