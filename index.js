@@ -8,7 +8,7 @@ layui.use(['jquery','laytpl'], function (){
         data:{userId:10},
         success:function(result){
             if(result.type=='SUCCESS'){
-                var html=template('menu-list',result.data);
+                var html=template('menu-list',result);
                  $("#nav").html(html);
             }
             console.log(result);
