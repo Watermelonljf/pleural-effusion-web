@@ -22,24 +22,25 @@ layui.config({
 
         $.ajax({
             url: 'http://localhost:9094/user-platform/user/login', //实际使用请改成服务端真实接口
-            data: {username:obj.field.username,password:obj.field.password,vercode:obj.field.vercode},
+            data: {username:obj.field.username,password:obj.field.password,vercode:obj.field.vercode,imgToken:sessionStorage.getItem("ctoken")},
             type: 'post',
             dataType:'json',
             success: function (res) {
-                //请求成功后，写入 access_token
-                layui.data(setter.tableName, {
-                    key: setter.request.tokenName
-                    , value: res.data.access_token
-                });
+                if(res.type=="SUCCESS"){
+                    //请求成功后，写入 access_token
+                    sessionStorage.setItem("access_token",res.data.token);
+                    sessionStorage.setItem("access_username",res.data.username);
+                    sessionStorage.setItem("access_userId",res.data.userId);
+                    //登入成功的提示与跳转
+                    layer.msg('登入成功', {
+                        offset: '15px'
+                        , icon: 1
+                        , time: 1000
+                    }, function () {
+                        location.href = './index.html'; //后台主页
+                    });
+                }
 
-                //登入成功的提示与跳转
-                layer.msg('登入成功', {
-                    offset: '15px'
-                    , icon: 1
-                    , time: 1000
-                }, function () {
-                    location.href = '../'; //后台主页
-                });
             }
 
         })
