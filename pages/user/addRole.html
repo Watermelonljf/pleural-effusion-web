@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理-胸腔积液辅助诊断系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <link rel="stylesheet" href="../../static/css/weadmin.css">
+    <script src="../../lib/layui/layui.js" charset="utf-8"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .pleural-center{
+            margin: auto auto;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-card pleural-center">
+    <div class="layui-card-body">
+        <form class="layui-form" action="" lay-filter="component-form-element">
+            <div class="layui-row layui-col-space10 layui-form-item">
+                <div class="layui-col-xs5">
+                    <label class="layui-form-label">角色名称：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="role" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-col-xs5">
+                    <label class="layui-form-label">角色描述：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="description" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+            </div>
+           <!-- <div class="layui-form-item">
+                <label class="layui-form-label">兴趣爱好：</label>
+                <div class="layui-input-block">
+                     <input type="checkbox" name="interest[write]" title="写作"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>写作</span><i class="layui-icon"></i></div>
+                    <input type="checkbox" name="interest[read]" title="阅读"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>阅读</span><i class="layui-icon"></i></div>
+                    <input type="checkbox" name="interest[code]" title="代码" checked=""><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin=""><span>代码</span><i class="layui-icon"></i></div>
+                    <input type="checkbox" name="interest[dreaming]" title="做梦"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>做梦</span><i class="layui-icon"></i></div>
+                </div>
+            </div>-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">授权资源：</label>
+                <div class="layui-input-block" id="resource-list">
+                   <!-- <input type="checkbox" name="interest[write]" title="写作"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>写作</span><i class="layui-icon"></i></div>
+                    <input type="checkbox" name="interest[read]" title="阅读"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>阅读</span><i class="layui-icon"></i></div>
+                    <input type="checkbox" name="interest[code]" title="代码" checked=""><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin=""><span>代码</span><i class="layui-icon"></i></div>
+                    <input type="checkbox" name="interest[dreaming]" title="做梦"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>做梦</span><i class="layui-icon"></i></div>-->
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否启用：</label>
+                <div class="layui-input-block">
+                    <input id="available" type="checkbox" name="available" lay-skin="switch" lay-text="是|否"><div class="layui-unselect layui-form-switch" lay-skin="_switch"><em>否</em><i></i></div>
+                </div>
+            </div>
+           <!-- <div class="layui-form-item">
+                <label class="layui-form-label">所属职称：</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="role" value="" title="经理"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>经理</div></div>
+                    <input type="radio" name="role" value="" title="主管"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>主管</div></div>
+                    <input type="radio" name="role" value="" title="码农" checked=""><div class="layui-unselect layui-form-radio layui-form-radioed"><i class="layui-anim layui-icon"></i><div>码农</div></div>
+                    <input type="radio" name="role" value="" title="端水"><div class="layui-unselect layui-form-radio"><i class="layui-anim layui-icon"></i><div>端水</div></div>
+                </div>
+            </div>-->
+
+            <!--<div class="layui-form-item">-->
+                <!--<label class="layui-form-label"> </label>-->
+                <!--<div class="layui-input-block">-->
+                    <!--<input type="checkbox" name="agreement" title="同意" lay-skin="primary" checked=""><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary"><span>同意</span><i class="layui-icon"></i></div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit="" lay-filter="component-form-element">添加</button>
+                    <button type="reset" class="layui-btn layui-btn-danger">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../lib/template/template.js"></script>
+<script type="text/javascript" src="../../static/js/ajaxTool.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../static/js/user/addRole.js"></script>
+
+<script type="text/html" id="resources">
+{{ each data as itme}}
+{{if itme.parentId==-1}}
+<input type="checkbox" lay-filter="switch-check" name="{{itme.id}}" title="{{itme.name}}+'根'"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>{{itme.name}}(根)'</span><i class="layui-icon"></i></div>
+{{else}}
+<input type="checkbox" lay-filter="switch-check" name="{{itme.id}}" title="{{itme.name}}"><div class="layui-unselect layui-form-checkbox" lay-skin=""><span>{{itme.name}}</span><i class="layui-icon"></i></div>
+{{/if}}
+{{/each}}
+</script>
+</body>
+</html>

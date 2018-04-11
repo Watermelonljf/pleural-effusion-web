@@ -39,6 +39,14 @@ layui.config({
                     }, function () {
                         location.href = './index.html'; //后台主页
                     });
+                }else{
+                    layer.msg(res.message,{
+                        offset: '15px'
+                        , icon: 2
+                        , time: 1000
+                    },function(){
+
+                    });
                 }
 
             }

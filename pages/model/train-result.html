@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>训练监控-Pleural-effusion</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="stylesheet" href="../../static/css/font.css">
+    <link rel="stylesheet" href="../../static/css/weadmin.css">
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <style>
+        .box{
+            height: 300px;
+            border-color: gray !important;
+            border: solid;
+            border-width: 1px;
+            border-radius: 8px;
+            padding: 5px;
+            width:90% !important;
+            overflow:auto;
+        }
+    </style>
+</head>
+<body>
+<div class="weadmin-body">
+        <blockquote class="layui-elem-quote">
+            说明：此图标为监控模型训练用，当模型训练未进行时不会有数据推送显示
+        </blockquote>
+        <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+        <div class="layui-row">
+            <div id="main" style="width: 100%;height:400px;"></div>
+        </div>
+        <blockquote class="layui-elem-quote">
+            提示：以下为接收到的绘图数据及消息日志滚动
+        </blockquote>
+        <div class="layui-main" style="width: 100%">
+                <div id="first" class="layui-col-md6" style="float: right;">
+                    <h2>实时数据</h2><br/>
+                    <div class="box"></div>
+                </div>
+
+                <div id="second" class="layui-col-md6">
+                    <h2>消息队列日志</h2><br/>
+                    <div class="box"></div>
+                </div>
+        </div>
+</div>
+<script src="../../lib/jq/jquery-3.2.1.min.js"></script>
+<script src="//cdn.bootcss.com/echarts/4.0.2/echarts.min.js"></script>
+<script type="text/javascript" src="../../lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../lib/stomp/stomp.js" charset="utf-8"></script>
+<script type="text/javascript" src="../../lib/stomp/sockjs-0.3.js" charset="utf-8"></script>
+
+<script type="text/javascript" src="../../static/js/model/train-result.js"></script>
+
+
+</body>
+</html>

@@ -8,6 +8,7 @@
  * +----------------------------------------------------------------------
  */
 
+var tab;
 layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 	var $ = layui.jquery,
 		form = layui.form,
@@ -165,7 +166,7 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 	/*
 	 * @todo tab触发事件：增加、删除、切换
 	 */
-	var tab = {
+	tab = {
 		tabAdd: function(title, url, id) {
 			//判断当前id的元素是否存在于tab中
 			var li = $("#WeTabTip li[lay-id=" + id + "]").length;
@@ -461,3 +462,70 @@ layui.define(['jquery', 'form', 'layer', 'element'], function(exports) {
 
 	exports('admin', {});
 });
+/*弹出层*/
+/*
+ 参数解释：
+ title   标题
+ url     请求的url
+ id      需要操作的数据id
+ w       弹出层宽度（缺省调默认值）
+ h       弹出层高度（缺省调默认值）
+ */
+function WeAdminShow(title, url, w, h) {
+    if(title == null || title == '') {
+        title = false;
+    };
+    if(url == null || url == '') {
+        url = "404.html";
+    };
+    if(w == null || w == '') {
+        w = ($(window).width() * 0.9);
+    };
+    if(h == null || h == '') {
+        h = ($(window).height() - 50);
+    };
+    layer.open({
+        type: 2,
+        area: [w + 'px', h + 'px'],
+        fix: false, //不固定
+        maxmin: true,
+        shadeClose: true,
+        shade: 0.4,
+        title: title,
+        content: url
+    });
+}
+/*弹出层+传递ID参数*/
+function WeAdminEdit(title, url, id, w, h) {
+    if(title == null || title == '') {
+        title = false;
+    };
+    if(url == null || url == '') {
+        url = "404.html";
+    };
+    if(w == null || w == '') {
+        w = ($(window).width() * 0.9);
+    };
+    if(h == null || h == '') {
+        h = ($(window).height() - 50);
+    };
+    layer.open({
+        type: 2,
+        area: [w + 'px', h + 'px'],
+        fix: false, //不固定
+        maxmin: true,
+        shadeClose: true,
+        shade: 0.4,
+        title: title,
+        content: url,
+        success: function (layero, index) {
+            //向iframe页的id=house的元素传值  // 参考 https://yq.aliyun.com/ziliao/133150
+            var body = layer.getChildFrame('body', index);
+            body.contents().find("#dataId").val(id);
+            console.log(id);
+        },
+        error:function(layero, index){
+            alert("aaa");
+        }
+    });
+}

@@ -1,6 +1,10 @@
 /**
  * Created by ljianf on 2018/3/30.
  */
+String.prototype.endWith=function(endStr){
+    var d=this.length-endStr.length;
+    return (d>=0&&this.lastIndexOf(endStr)==d)
+}
 layui.config({
     base: './lib/layui/' //静态资源所在路径
 }).extend({
@@ -35,24 +39,16 @@ layui.config({
             type:'post',
             dataType:'json',
             success:function(res){
+                if(res.type=='SUCCESS'){
+                    if(field.email.endWith("163.com")){
+                        window.open("http://mail.163.com");
+                    }else if(field.email.endWith("qq.com")){
+                        window.open("http://mail.qq.com");
+                    }
+                }
                 console.log(res);
             }
-        })
-        //请求接口
-        /*admin.req({
-            url: layui.setter.base + 'json/user/reg.js' //实际使用请改成服务端真实接口
-            ,data: field
-            ,done: function(res){
-                layer.msg('注册成功', {
-                    offset: '15px'
-                    ,icon: 1
-                    ,time: 1000
-                }, function(){
-                    location.hash = '/user/login'; //跳转到登入页
-                });
-            }
-        });*/
-
+        });
         return false;
     });
 });

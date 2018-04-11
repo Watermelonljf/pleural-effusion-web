@@ -12,6 +12,7 @@
 		<link rel="stylesheet" href="./static/css/font.css">
 		<link rel="stylesheet" href="./static/css/weadmin.css">
 		<script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+
 	</head>
 
 	<body>
@@ -243,42 +244,42 @@
 		<div class="footer">
 			<div class="copyright">Copyright ©2018 WeAdmin v1.0 All Rights Reserved</div>
 		</div>
-
-	<script type="text/javascript" src="./lib/template/template.js"></script>
-
-	<script type="text/javascript" src="./static/js/ajaxTool.js"></script>
-	<script type="text/javascript" src="./index.js"></script>
-	<!--<script type="text/javascript" src="./static/js/admin.js"></script>-->
 		<!-- 底部结束 -->
 		<!--<script type="text/javascript">
-            layui.config({
-                base: './static/js/',
-                version:'1022145'
-            }).use('admin');
+			layui.config({
+			  base: './static/js/'
+			}).use('admin');
 		</script>-->
-
+		<script type="text/javascript" src="./lib/template/template.js"></script>
 		<script id="menu-list" type="text/html">
 			{{each data as item}}
-			<li>
-				<a href="javascript:;">
-					<i class="iconfont">{{item.icon}}</i>
-					<cite>{{item.name}}</cite>
-					<i class="iconfont nav_right">&#xe697;</i>
-				</a>
-				<ul class="sub-menu">
-					{{each item.resources as menu  }}
-					<li>
-						<a _href={{menu.url}}>
-							<i class="iconfont">&#xe6a7;</i>
-							<cite>{{menu.name}}</cite>
-						</a>
-					</li>
-					{{/each}}
-				</ul>
-			</li>
+				<li>
+					<a href="javascript:;">
+						<i class="iconfont">{{item.icon}}</i>
+						<cite>{{item.name}}</cite>
+						<i class="iconfont nav_right">&#xe697;</i>
+					</a>
+					<ul class="sub-menu">
+						{{each item.resources as menu  }}
+							<li>
+								<a _href={{menu.url}}>
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>{{menu.name}}</cite>
+								</a>
+							</li>
+						{{/each}}
+					</ul>
+				</li>
 			{{/each}}
 
 		</script>
+		<script type="text/javascript">
+            layui.config({
+                base: './static/js/'
+            }).use('admin');
+		</script>
+	<script type="text/javascript" src="./static/js/ajaxTool.js"></script>
+	<script type="text/javascript" src="./index.js"></script>
 	</body>
 	<!--Tab菜单右键弹出菜单-->
 	<ul class="rightMenu" id="rightMenu">

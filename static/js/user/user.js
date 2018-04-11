@@ -6,7 +6,7 @@ layui.use(['table','util','layer'],function () {
     var $ = layui.$;
     table.render({
         elem: '#datagrid',
-        url:'http://127.0.0.1:9094/user-platform/role/getRoles',
+        url:'http://127.0.0.1:9094/user-platform/user/list',
         method:'get',
         loading: true,
         text: {
@@ -22,9 +22,15 @@ layui.use(['table','util','layer'],function () {
         cols: [[
             {type:'checkbox'},
             {type: 'numbers', title: '序号', templet: '#indexTpl',width:70,align:'center'},
-            {field: 'role', title: '角色名',align:'center',event:'updateRole'},
-            {field: 'description', title: '描述',event:'updateDesc',align:'center'},
-            {field: 'available', title: '状态',align:'center',event:'updateState'},
+            {field: 'username', title: '用户名',align:'center',event:'updateRole'},
+            {field: 'age', title: '年龄',width:60,align:'center'},
+            {field: 'sex', title: '性别',width:60,align:'center'},
+            {field: 'telphone', title: '联系方式',align:'center'},
+            {field: 'email', title: '邮箱',width:170,align:'center'},
+            {field: 'roleId', title: '角色',width:60,align:'center',event:'updateRole'},
+            {field: 'locked', title: '锁定',width:60,align:'center',event:'updateState'},
+            {field: 'isActive', title: '激活',width:60,align:'center'},
+            {field: 'available', title: '有效用户',width:100,align:'center',event:'updateAvailable'},
             {field: 'createTime', title: '创建时间',align:'center',templet: "<div>{{layui.util.toDateString(d.createTime, 'yyyy-MM-dd HH:mm:ss')}}</div>"},
             {field: 'updateTime', title: '更新时间',align:'center',templet: "<div>{{layui.util.toDateString(d.updateTime, 'yyyy-MM-dd HH:mm:ss')}}</div>"},
             {fixed: 'right', width:100, title: '操作', align:'center', toolbar: '#barDemo'}
@@ -45,7 +51,7 @@ layui.use(['table','util','layer'],function () {
 
                 obj.data.description=value;
                 //更新数据库
-                Role.updateRole(obj.data);
+                User.updateUser(obj.data);
                 //同步更新表格和缓存对应的值
                 obj.update({
                     description: value
@@ -59,7 +65,7 @@ layui.use(['table','util','layer'],function () {
                 }, function(value, index){
                     layer.close(index);
                     obj.data.role=value;
-                    Role.updateRole(obj.data);
+                    User.updateRole(obj.data);
                     //同步更新表格和缓存对应的值
                     obj.update({
                         role: value
@@ -74,7 +80,7 @@ layui.use(['table','util','layer'],function () {
                 layer.close(index);
                 //同步更新表格和缓存对应的值
                 obj.data.available=value;
-                Role.updateRole(obj.data);
+                User.updateUser(obj.data);
                 obj.update({
                     available: value
                 });
@@ -82,8 +88,9 @@ layui.use(['table','util','layer'],function () {
             });
         } else if(obj.event === 'del'){
             layer.confirm('真的删除这条数据吗？', function(index){
-                //obj.del();
-                Role.deleteRole(obj.data.id);
+                var id=[];
+                id.push(obj.data.id);
+                User.batchDel(id);
                 layer.close(index);
             });
         }
@@ -104,11 +111,11 @@ layui.use(['table','util','layer'],function () {
                 for(var i=0;i<data.length;i++){
                     ids.push(data[i].id);
                 }
-                Role.batchDel(ids)
+                User.batchDel(ids)
                 layer.close(index);
             });
         },
-        addRole:function(){
+        addUser:function(){
             var w = ($(window).width() * 0.45);
             var h = ($(window).height() * 0.6);
             layer.open({
@@ -119,7 +126,7 @@ layui.use(['table','util','layer'],function () {
                 shadeClose: true,
                 shade: 0.4,
                 title: '添加角色',
-                content: '../../../pages/user/addRole.html',
+                content: '../../../pages/user/addUser.html',
                 end: function(index, layero){
                     table.reload("datagrid");
                     return false;
@@ -132,9 +139,9 @@ layui.use(['table','util','layer'],function () {
         var type = $(this).data('type');
         active[type] ? active[type].call(this) : '';
     });
-    var Role={
+    var User={
 
-        updateRole:function(data){
+        updateUser:function(data){
             Tool.send({
                 url:'http://127.0.0.1:9094/user-platform/role/update',
                 data:{id:data.id,role:data.role,description:data.description,available:data.available},
@@ -163,45 +170,17 @@ layui.use(['table','util','layer'],function () {
             });
         },
 
-        deleteRole:function(id){
-            Tool.send({
-                url:'http://127.0.0.1:9094/user-platform/role/delete',
-                data:{id:id},
-                type:'post',
-                dataType:'json',
-                async:true,
-                success:function(result){
-                    if(result.type=='SUCCESS'){
-                        layer.msg('删除角色成功！', {
-                            offset: '15px'
-                            , icon: 1
-                            , time: 1000
-                        }, function () {
-                            table.reload("datagrid");
-                        });
-                    }else{
-                        layer.msg('删除角色失败！', {
-                            offset: '15px'
-                            , icon: 1
-                            , time: 1000
-                        }, function () {
-                            table.reload("datagrid");
-                        });
-                    }
-                }
-            });
-        },
 
         batchDel:function(data){
             Tool.send({
-                url:'http://127.0.0.1:9094/user-platform/role/delete/batch',
-                data:{json:JSON.stringify(data)},
+                url:'http://127.0.0.1:9094/user-platform/user/delete',
+                data:{idsJson:JSON.stringify(data)},
                 type:'post',
                 dataType:'json',
                 async:true,
                 success:function(result){
                     if(result.type=='SUCCESS'){
-                        layer.msg('删除角色成功！', {
+                        layer.msg('删除用户成功！', {
                             offset: '15px'
                             , icon: 1
                             , time: 1000
@@ -209,7 +188,7 @@ layui.use(['table','util','layer'],function () {
                             table.reload("datagrid");
                         });
                     }else{
-                        layer.msg('删除角色失败！', {
+                        layer.msg('删除用户失败！', {
                             offset: '15px'
                             , icon: 1
                             , time: 1000
